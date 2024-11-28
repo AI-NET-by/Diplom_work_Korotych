@@ -1,0 +1,1 @@
+# Diplom_work_Korotych
