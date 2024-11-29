@@ -3,8 +3,8 @@ import time
 import allure
 import pytest_check as check
 
-from Korotych_Vladislav.Diplom_work_Korotych_Vladislav.conftest import web_browser
-from Korotych_Vladislav.Diplom_work_Korotych_Vladislav.locators.locators_main_page import MainPage
+from Diplom_work_Korotych_Vladislav.conftest import web_browser
+from Diplom_work_Korotych_Vladislav.locators.locators_main_page_deviantart import MainPage
 
 
 @allure.story('Тест для проверки главной страницы')
@@ -14,123 +14,37 @@ def test_headers(web_browser):
 
     page = MainPage(web_browser)
 
-    page.btn_pip_up_сookie.click()
-
-    elements_headers = [
-        (page.btn_headers_domain, 'Домены'),
-        (page.btn_headers_hosting, 'Хостинг'),
-        (page.btn_headers_cloud, 'Облако'),
-        (page.btn_headers_mail, 'Почта')
-    ]
-
-    for elements, elements_text in elements_headers:
-        with allure.step(f'Проверка "{elements_text}" на отображение'):
-            check.is_true(elements.is_visible())
-
-        with allure.step(f'Проверка "{elements_text}" на кликабельность'):
-            check.is_true(elements.is_clickable())
-
-        with allure.step(f'Сверка текста"{elements_text}"'):
-            check.equal(elements.get_text(), elements_text)
+     elements_headers = [(page.btn_blog, "Блог","https://ru.pinterest.com/_/_/blog/?utm_source=organicpins_pinsite_homepageicon&utm_campaign=pinterest_homepage_blogicon_all_evergreen&utm_medium=organic-pinterest"),
+                         (page.btn_sign_up, "Регистрация","https://ru.pinterest.com/#top"),
+                         (page.btn_description, "Описание","https://ru.pinterest.com/_/_/about/"),
+                         (page.btn_login, "Регистрация","https://ru.pinterest.com/#top"),
+                         (page.btn_business, "Бизнес","https://ru.pinterest.com/_/_/business/"),
+                         (page.btn_ideas, "Просмотреть","https://ru.pinterest.com/ideas/"),
+                         (page.btn_android,"Приложение для Android","https://play.google.com/store/apps/details?id=com.pinterest"),
+                         (page.btn_iphone,"Приложение для iPhone","https://play.google.com/store/apps/details?id=com.pinterest"),
+                         (page.btn_privacy,"Пользователи", "https://www.pinterest.com/html_sitemap/pinners_a.html"),
+                         (page.btn_today,"Сегодня", "https://ru.pinterest.com/today/")
+                         (page.btn_collections,"Коллекции", "https://www.pinterest.com/html_sitemap/boards_a.html"),
+                         ()
 
 
-@allure.story('Тест для проверки главной страницы')
-@allure.feature('Тест для проверки наличия блоков')
-def test_headers(web_browser):
-    """Этот тест проверяет блоки главной страницы на его присутсвие"""
+                         ]
 
-    page = MainPage(web_browser)
+     for elements, text_element, url_elements in elements_headers:
+         with allure.step('Тест проверки правильного URL при переходе'):
+             elements.click()
+             page.switch_to_window()
 
-    page.btn_pip_up_сookie.click()
+         with allure.step('Тест проверки отображения на экране'):
+             check.is_true(elements.is_visible())
 
-    elements_headers = [
-        (page.block_main, 'Первый блок или главный')
-    ]
+         with allure.step('Тест проверки кликабельности'):
+             check.is_true(elements.is_clickable())
 
-    for elements, elements_text in elements_headers:
-        with allure.step(f'Проверка "{elements_text}" на отображение'):
-            check.is_true(elements.is_visible())
-
-
-@allure.story('Тест для проверки главной страницы')
-@allure.feature('Тест для проверки текста')
-def test_headers(web_browser):
-    """Этот тест проверяет текст на наличие и его корректность"""
-
-    page = MainPage(web_browser)
-
-    page.btn_pip_up_сookie.click()
-
-    elements_headers = [
-        (page.txt_main_h1, 'Все для онлайн-проектов и их защиты')
-    ]
-
-    for elements, elements_text in elements_headers:
-        with allure.step(f'Проверка "{elements_text}" на отображение'):
-            check.is_true(elements.is_visible())
-
-        with allure.step(f'Сверка текста "{elements_text}"'):
-            check.equal(elements.get_text(), elements_text)
+    # with allure.step('Тест проверки орфографии'):
+    #     page.btn_blog.click()
+    #     page.switch_to_window(1)
+    #     print(page.get_current_url())
 
 
-@allure.story('Тест для проверки главной страницы')
-@allure.feature('Тест для проверки работоспособности инпута')
-def test_input_main(web_browser):
-    """Этот тест проверяет работоспособность инпута"""
 
-    page = MainPage(web_browser)
-
-    page.btn_pip_up_сookie.click()
-
-    with allure.step('Проверка на кликабельность'):
-        check.is_true(page.input_main_wrapper.is_visible())
-
-    with allure.step('Проверка на отображение'):
-        check.is_true(page.input_main_wrapper.is_clickable())
-
-    with allure.step('Проверка плейсхолдера'):
-        check.equal(page.input_main_wrapper.get_attribute('placeholder'), 'Введите домены')
-
-    with allure.step('Проверка на ввод текст и роверка результата'):
-        text_by_zone = page.text_by_zone.get_text()
-        text_tatimati = 'tatimati'
-
-        page.input_main_wrapper.send_keys(text_tatimati)
-        page.btn_search_domain.click(1)
-
-        time.sleep(10)
-        print(page.group_valid_domain.get_text())
-        check.not_equal(page.group_valid_domain.get_text().find(f'{text_tatimati+text_by_zone}'), -1)
-
-
-@allure.story('Тест для проверки главной страницы')
-@allure.feature('Тест для проверки адреса ссылок')
-def test_link_main(web_browser):
-    """Этот тест проверяет адрес ссылок в кнопках """
-
-    page = MainPage(web_browser)
-
-    page.btn_pip_up_сookie.click()
-
-    with allure.step('Проверка на кликабельность'):
-        check.is_true(page.btn_domain_link.is_clickable())
-        check.is_true(page.btn_domain_link.is_visible())
-        check.equal(page.btn_domain_link.get_attribute('href'), 'https://www.deviantart.com/tag/sanctum')
-
-
-@allure.story('Тест для проверки главной страницы')
-@allure.feature('Тест для проверки колличества плиток в блоке "Подберите свое решение"')
-def test_count_box_main(web_browser):
-    """Этот тест проверяет количество плиток в блоке "Подберите свое решение" """
-
-    page = MainPage(web_browser)
-
-    page.btn_pip_up_сookie.click()
-
-    with allure.step('Проверка количетва плиток'):
-        count = page.btn_count_box
-        namber = [(4), (9), (10), (3), (1), (4), (10), (3), (5), (5), (53)]
-
-        for count_elemnts in count:
-            count_elemnts.click()
-            check.equal(page.count_box.count(), namber)
