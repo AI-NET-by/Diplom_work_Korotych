@@ -3,8 +3,10 @@ import time
 import allure
 import pytest_check as check
 
+
 from Diplom_work_Korotych_Vladislav.conftest import web_browser
 from Diplom_work_Korotych_Vladislav.locators.locators_main_page_deviantart import MainPage
+
 
 
 @allure.story('Тест для проверки главной страницы')
@@ -14,7 +16,7 @@ def test_headers(web_browser):
 
     page = MainPage(web_browser)
 
-     elements_headers = [(page.btn_blog, "Блог","https://ru.pinterest.com/_/_/blog/?utm_source=organicpins_pinsite_homepageicon&utm_campaign=pinterest_homepage_blogicon_all_evergreen&utm_medium=organic-pinterest"),
+    elements_headers = [(page.btn_blog, "Блог","https://ru.pinterest.com/_/_/blog/?utm_source=organicpins_pinsite_homepageicon&utm_campaign=pinterest_homepage_blogicon_all_evergreen&utm_medium=organic-pinterest"),
                          (page.btn_sign_up, "Регистрация","https://ru.pinterest.com/#top"),
                          (page.btn_description, "Описание","https://ru.pinterest.com/_/_/about/"),
                          (page.btn_login, "Регистрация","https://ru.pinterest.com/#top"),
@@ -30,15 +32,15 @@ def test_headers(web_browser):
 
                          ]
 
-     for elements, text_element, url_elements in elements_headers:
-         with allure.step('Тест проверки правильного URL при переходе'):
+    for elements, text_element, url_elements in elements_headers:
+        with allure.step('Тест проверки правильного URL при переходе'):
              elements.click()
              page.switch_to_window()
 
-         with allure.step('Тест проверки отображения на экране'):
+        with allure.step('Тест проверки отображения на экране'):
              check.is_true(elements.is_visible())
 
-         with allure.step('Тест проверки кликабельности'):
+        with allure.step('Тест проверки кликабельности'):
              check.is_true(elements.is_clickable())
 
     # with allure.step('Тест проверки орфографии'):
@@ -47,4 +49,23 @@ def test_headers(web_browser):
     #     print(page.get_current_url())
 
 
+def test_search_box_container(web_browser):
+    """"Этот тест проверяет кликабельность, наличие элементов, правописание"""
+
+    page = MainPage(web_browser)
+
+    with allure.step('Проверка, что в поиске есть вкладка dolled Up home decor'):
+        page.search_box_container('dolled Up home decor')
+
+    with allure.step('Нажимаем на вкладку dolled Up home decor'):
+        page.dolled_up_home_decor()
+
+    with allure.step('Проверяем, что мы перешли по вкладке'):
+        check.equal(page.get_current_url(), 'https://ru.pinterest.com/today/best/dolled-up-home-decor/123788/')
+
+
+def test_registration(web_browser):
+    """"Этот тест проверяет кликабельность, наличие элементов, правописание"""
+
+    page = MainPage(web_browser)
 

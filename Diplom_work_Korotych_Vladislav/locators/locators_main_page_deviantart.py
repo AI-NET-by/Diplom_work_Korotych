@@ -30,4 +30,5 @@ class MainPage(WebPage):
     btn_ideas_link = WebElement(xpath='//div[@data-test-id="ideas-link"]//a[@href="/ideas/"')
     btn_shopping = WebElement(xpath='//div[@data-test-id="shopping-sitemap"]//a[@href="/ideas/"')
 
-
+    search_box_container = WebElement(xpath='//div[@id="searchBoxContainer"]')
+    dolled_up_home_decor = WebElement(xpath='//a[@href="/today/shop/dolled-up-home-decor/123788/"]')
