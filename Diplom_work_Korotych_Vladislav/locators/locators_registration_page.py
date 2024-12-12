@@ -20,3 +20,6 @@ class MainPage(WebPage):
     btn_notice = WebElement(xpath='//div[@data-test-id="noticeAtCollection"]')
     btn_your_Enter = WebElement(xpath='//div[@data-test-id="login-signup-toggle"]')
 
+    img_page_ideas = ManyWebElements(xpath='//div[@data-test-id="interestRep"]')
+    img_page_search = ManyWebElements(xpath='//div[@data-test-id="search-suggestion-today-bubble"]')
+    btn_search = WebElement(xpath='(//div[@data-test-id="search-box-container"])[1]')
