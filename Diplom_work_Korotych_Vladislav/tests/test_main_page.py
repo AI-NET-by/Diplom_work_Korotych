@@ -3,8 +3,8 @@ import time
 import allure
 import pytest_check as check
 
-from Korotych_Vladislav.Diplom_work_Korotych_Vladislav.conftest import web_browser
-from Korotych_Vladislav.Diplom_work_Korotych_Vladislav.locators.locators_main_page import MainPage
+from Diplom_work_Korotych_Vladislav.conftest import web_browser
+from Diplom_work_Korotych_Vladislav.locators.locators_main_page import MainPage
 
 
 @allure.story('Тест для проверки главной страницы')

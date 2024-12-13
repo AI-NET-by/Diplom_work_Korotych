@@ -21,7 +21,7 @@ class MainPage(WebPage):
     btn_ideas = WebElement(xpath='//div[@data-test-id="unauth-header"]//a[@href="/ideas/"')
 
     btn_privacy = WebElement(xpath='//div[@data-test-id="privacy-policy"]//a[@href="/ideas/"')
-    btn_help= WebElement(xpath='//div[@data-test-id="help-link"]//a[@href="/ideas/"')
+    btn_help = WebElement(xpath='//div[@data-test-id="help-link"]//a[@href="/ideas/"')
     btn_iphone = WebElement(xpath='//div[@data-test-id="iphone-app-link"]//a[@href="/ideas/"')
     btn_android = WebElement(xpath='//div[@data-test-id="android-app-link"]//a[@href="/ideas/"')
     btn_users = WebElement(xpath='//div[@data-test-id="users-sitemap"]//a[@href="/ideas/"')
@@ -32,3 +32,11 @@ class MainPage(WebPage):
 
     search_box_container = WebElement(xpath='//div[@id="searchBoxContainer"]')
     dolled_up_home_decor = WebElement(xpath='//a[@href="/today/shop/dolled-up-home-decor/123788/"]')
+
+    password_field_input = WebElement(xpath='//input[@id="password"]')
+    birthdate_field = WebElement(xpath='//input[@id="birthdate"]')
+    btn_registration_confirm = WebElement(xpath='(//div[@class="KS5 hs0 mQ8 un8 b23 TB_"])[4]')
+    email_field_input = WebElement(xpath='//input[@id="email"]')
+    btn_eye = WebElement(xpath='(//div[@class="FNs zI7 iyn Hsu"])[5]')
+    protect_window_text = WebElement(xpath='//div[@class="Jea XiG jzS ujU zI7 iyn Hsu"]')
+
