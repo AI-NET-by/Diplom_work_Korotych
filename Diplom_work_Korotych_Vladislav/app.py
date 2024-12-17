@@ -8,16 +8,46 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def welcome():
-    """ Эта функция запуская и отвечает за процесс возврата результата welcome.html. """
+def index():
+    """ Эта функция запуская и отвечает за процесс возврата результата index.html. """
 
-    return render_template('welcome.html')
+    return render_template('index.html')
 
 
-@app.route("/error")
-def error():
-    """Эта функция запуская и отвечает за процесс возврата результата test_error.html."""
-    return render_template('test_error.html')
+@app.route("/ui_test")
+def ui_test():
+    """ Эта функция запуская и отвечает за генерацию отчета по UI автотестам в allure. """
+    cmd = ["./scriptsh/ui_test.sh"]
+    with subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE,
+                          stdin=subprocess.PIPE,
+                          universal_newlines=True) as result:
+        out = result.communicate()
+    return render_template('welcome.html', text=out, json=out)
+
+
+@app.route("/api_test_get")
+def api_tes_get():
+    """ Эта функция запуская и отвечает за генерацию отчета проверки статус кода Get в allure. """
+    cmd = ["./scriptsh/api_test_get.sh"]
+    with subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE,
+                          stdin=subprocess.PIPE,
+                          universal_newlines=True) as result:
+        out = result.communicate()
+    return render_template('welcome.html', text=out, json=out)
+
+
+@app.route("/api_test_put")
+def api_test_put():
+    """ Эта функция запуская и отвечает за генерацию отчета проверки Post. """
+    cmd = ["./scriptsh/api_test_put.sh"]
+    with subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE,
+                          stdin=subprocess.PIPE,
+                          universal_newlines=True) as result:
+        out = result.communicate()
+    return render_template('welcome.html', text=out, json=out)
 
 
 @app.route("/runallure")
