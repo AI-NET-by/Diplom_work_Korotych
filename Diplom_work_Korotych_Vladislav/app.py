@@ -73,7 +73,7 @@ def run_ui():
                           stdin=subprocess.PIPE,
                           universal_newlines=True) as result:
         out = result.communicate()
-    return render_template('welcome.html', text=out, json=out)
+    return render_template('index.html', text=out, json=out)
 
 
 if __name__ == "__main__":
